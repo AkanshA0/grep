@@ -1,40 +1,23 @@
 package com.example.grep1;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class rikLiveLoc extends FragmentActivity implements OnMapReadyCallback {
+
     private GoogleMap mMap;
-    private GoogleMap mMap2;
-
-    Location locationSet;
-    LocationManager locationManager;
-    LocationListener locationListener;
-    LatLng latLong;
-    String addressLine;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-
-    Marker m1;
-    Marker m2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rik_maps);
+        setContentView(R.layout.activity_rik_live_loc);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
