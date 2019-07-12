@@ -28,7 +28,7 @@ public class rikLoginAct extends AppCompatActivity {
     {
         startActivity(intentRikSignUp);
     }
--
+
     public void onClickLogin(View view)
     {
         startActivity(intentNavDraw);
