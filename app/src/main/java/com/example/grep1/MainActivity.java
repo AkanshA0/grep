@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intentShopLogin;
     Intent intentRikLogin;
     Intent intentUserLogin;
+    Intent intentMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         intentShopLogin=new Intent(getApplicationContext(),shopLogin.class);
         intentRikLogin=new Intent(getApplicationContext(),rikLoginAct.class);
         intentUserLogin=new Intent(getApplicationContext(),userLoginAct.class);
-
-
+        intentMap=new Intent(getApplicationContext(),RikMapsActivity.class);
+        intentMap.putExtra("ruid","f5IamgbK6sdaWc4CFKqFaYFRb733");
 
     }
 

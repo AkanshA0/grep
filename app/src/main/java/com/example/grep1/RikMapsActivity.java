@@ -1,5 +1,6 @@
 package com.example.grep1;
 
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,7 +28,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
     String addressLine;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
+    String curUid;
     Marker m1;
     Marker m2;
 
@@ -39,6 +40,9 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intent=getIntent();
+        curUid =intent.getStringExtra("ruid");
     }
 
 

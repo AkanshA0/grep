@@ -9,7 +9,9 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -59,7 +61,7 @@ public class rikNavDrawAct extends AppCompatActivity
         uid=intent.getStringExtra("UId");
         type=intent.getStringExtra("type");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("rid/"+uid);
+        databaseReference = firebaseDatabase.getReference("rid/"+uid+"/location");
         Toast.makeText(getApplicationContext(),firebaseDatabase.getReference("rid/"+uid).toString(),Toast.LENGTH_SHORT).show();
 
         setTitle("grep");
@@ -163,6 +165,9 @@ public class rikNavDrawAct extends AppCompatActivity
            // Toast.makeText(getApplicationContext(),"no permission",Toast.LENGTH_SHORT).show();
         }
         else {
+
+
+
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
             locationSet = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             Toast.makeText(getApplicationContext(),locationSet.toString(),Toast.LENGTH_SHORT).show();
