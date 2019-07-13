@@ -1,6 +1,7 @@
 package com.example.grep1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,11 +12,12 @@ public class MainActivity extends AppCompatActivity {
     Button shop;
     Button rik;
     Button user;
+    Button dir;
     Intent intentShopLogin;
     Intent intentRikLogin;
     Intent intentUserLogin;
     Intent intentMap;
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         intentUserLogin=new Intent(getApplicationContext(),userLoginAct.class);
         intentMap=new Intent(getApplicationContext(),RikMapsActivity.class);
         intentMap.putExtra("ruid","f5IamgbK6sdaWc4CFKqFaYFRb733");
+        intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=22.7177,75.8545"));
 
     }
 
@@ -52,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
     public void onClickCallMap(View view)
     {
         startActivity(intentMap);
+    }
+
+
+    public void onClickDir(View view)
+    {
+        startActivity(intent);
     }
 
 }
