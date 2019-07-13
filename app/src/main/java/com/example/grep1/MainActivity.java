@@ -49,4 +49,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentUserLogin);
     }
 
+    public void onClickCallMap(View view)
+    {
+        startActivity(intentMap);
+    }
+
 }

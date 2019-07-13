@@ -61,8 +61,8 @@ public class rikNavDrawAct extends AppCompatActivity
         uid=intent.getStringExtra("UId");
         type=intent.getStringExtra("type");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("rid/"+uid+"/location");
-        Toast.makeText(getApplicationContext(),firebaseDatabase.getReference("rid/"+uid).toString(),Toast.LENGTH_SHORT).show();
+        databaseReference = firebaseDatabase.getReference("rid/"+uid);
+
 
         setTitle("grep");
 
@@ -136,7 +136,6 @@ public class rikNavDrawAct extends AppCompatActivity
             public void onLocationChanged(Location location) {
 
 
-                Log.i("info :", "location");
                 locationSet = location;
                 Toast.makeText(getApplicationContext(),locationSet.toString(),Toast.LENGTH_SHORT).show();
                 databaseReference.child("location").setValue(locationSet);
