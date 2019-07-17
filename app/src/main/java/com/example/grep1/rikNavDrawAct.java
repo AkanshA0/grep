@@ -59,7 +59,7 @@ public class rikNavDrawAct extends AppCompatActivity
 
         Intent intent=getIntent();
         uid=intent.getStringExtra("UId");
-        type=intent.getStringExtra("type");
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("rid/"+uid);
 

@@ -74,7 +74,6 @@ public class rikLoginAct extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 intentNavDraw.putExtra("UId",user.getUid());
-                                intentNavDraw.putExtra("type","r");
                                 startActivity(intentNavDraw);
 
                                 //updateUI(user);

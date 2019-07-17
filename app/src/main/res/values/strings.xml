@@ -9,5 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_rik_maps">Map</string>
     <string name="title_activity_rik_live_loc">Map</string>
+    <string name="title_activity_shop_nav_draw">shopNavDrawAct</string>
+    <string name="title_activity_usr_nav_draw">usrNavDrawAct</string>
 </resources>
 
