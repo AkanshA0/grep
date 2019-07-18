@@ -53,7 +53,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
     String rLat;
     String rLong;
     LatLng rLatLong;
-
+    int counter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +71,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("rid/"+curUid);
+        databaseReference = firebaseDatabase.getReference("rid");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,18 +80,21 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
                 int rno = (int)dataSnapshot.getChildrenCount();
 
                 Iterable<DataSnapshot> chlNames = dataSnapshot.getChildren();
+                counter = 0;
+                for (DataSnapshot contact : chlNames) {
+                    rLat = dataSnapshot.child(contact.getKey()).child("location").child("latitude").getValue().toString();
+                    rLong = dataSnapshot.child(contact.getKey()).child("location").child("longitude").getValue().toString();
 
-                rLat = dataSnapshot.child("location").child("latitude").getValue().toString();
-                rLong = dataSnapshot.child("location").child("longitude").getValue().toString();
+                    rLatLong = new LatLng(Double.valueOf(rLat), Double.valueOf(rLong));
+                    Toast.makeText(getApplicationContext(), rLatLong.toString(), Toast.LENGTH_SHORT).show();
+                    //mMap2.clear();
 
-                rLatLong= new LatLng(Double.valueOf(rLat),Double.valueOf(rLong));
-                Toast.makeText(getApplicationContext(),rLatLong.toString(),Toast.LENGTH_SHORT).show();
-                //mMap2.clear();
-
-                mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(rLatLong).title("R Location"));
-                if (latLong != null){m2 =  mMap.addMarker(new MarkerOptions().position(latLong));}
-                //   mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(PrisonerlatLng, 15 ));
-
+                    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(rLatLong).title("R Location"));
+                    if (latLong != null) {
+                        m2 = mMap.addMarker(new MarkerOptions().position(latLong));
+                    }
+                    //   mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(PrisonerlatLng, 15 ));
+                }
             }
 
             @Override

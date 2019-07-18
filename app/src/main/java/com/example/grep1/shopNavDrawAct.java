@@ -34,13 +34,13 @@ public class shopNavDrawAct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     RecyclerView recyclerView;
-    String[] nameArray = {"","","",""};
-    String[] latArray = {"","","",""};
-    String[] longArray = {"","","",""};
-    String[] addArray = {"","","",""};
-    String[] cUid = {"","","",""};
-    String[] phoneArray={"","","",""};
-    String[] listArray={"","","",""};
+    String[] nameArray = {"","","","","",""};
+    String[] latArray = {"","","","","",""};
+    String[] longArray = {"","","","","",""};
+    String[] addArray = {"","","","","",""};
+    String[] cUid = {"","","","","",""};
+    String[] phoneArray={"","","","","",""};
+    String[] listArray={"","","","","",""};
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     int counter=0;
@@ -55,7 +55,7 @@ public class shopNavDrawAct extends AppCompatActivity
         setContentView(R.layout.activity_shop_nav_draw);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //intentshopOrder=new Intent(getApplicationContext(),shopOrder.class);
+
         Intent intent=getIntent();
         uid=intent.getStringExtra("UId");
 
@@ -142,11 +142,11 @@ public class shopNavDrawAct extends AppCompatActivity
                 Toast.makeText(shopNavDrawAct.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
 
                 intentshopOrder.putExtra("cUid",uid);
-                intentshopOrder.putExtra("sUid",cUid[position]);
+                intentshopOrder.putExtra("sUid",uid);
                 intentshopOrder.putExtra("sAdd",addArray[position]);
                 intentshopOrder.putExtra("sName",nameArray[position]);
                 intentshopOrder.putExtra("sPhone",phoneArray[position]);
-                intentshopOrder.putExtra("sPhone",listArray[position]);
+                intentshopOrder.putExtra("sList",listArray[position]);
 
                 startActivity(intentshopOrder);
             }

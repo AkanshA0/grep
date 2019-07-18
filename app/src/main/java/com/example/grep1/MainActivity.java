@@ -16,13 +16,16 @@ public class MainActivity extends AppCompatActivity {
     Intent intentShopLogin;
     Intent intentRikLogin;
     Intent intentUserLogin;
-    Intent intentMap;
+    //Intent intentMap;
     Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("grep");
+
+
 
         shop=(Button)findViewById(R.id.btnShopLogin);
         rik=(Button)findViewById(R.id.btnRikLogin);
@@ -31,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         intentShopLogin=new Intent(getApplicationContext(),shopLogin.class);
         intentRikLogin=new Intent(getApplicationContext(),rikLoginAct.class);
         intentUserLogin=new Intent(getApplicationContext(),userLoginAct.class);
-        intentMap=new Intent(getApplicationContext(),RikMapsActivity.class);
-        intentMap.putExtra("ruid","f5IamgbK6sdaWc4CFKqFaYFRb733");
+        //intentMap=new Intent(getApplicationContext(),RikMapsActivity.class);
+        //intentMap.putExtra("ruid","f5IamgbK6sdaWc4CFKqFaYFRb733");
         intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("http://maps.google.com/maps?daddr=22.7177,75.8545"));
 
@@ -53,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intentUserLogin);
     }
 
-    public void onClickCallMap(View view)
+   /* public void onClickCallMap(View view)
     {
         startActivity(intentMap);
-    }
+    }*/
 
 
     public void onClickDir(View view)

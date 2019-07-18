@@ -1,7 +1,6 @@
 package com.example.grep1;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -10,7 +9,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -75,7 +73,7 @@ public class usrOrder extends AppCompatActivity {
         tList=(EditText) findViewById(R.id.txtList);
         tDelAdd=(EditText)findViewById(R.id.txtDelAdd);
 
-        submit=(Button)findViewById(R.id.btnSend);
+        submit=(Button)findViewById(R.id.btnRik);
         tName.setText(sName);
         tAdd.setText(sAdd);
         tPhone.setText(sPhone);
