@@ -37,7 +37,7 @@ import java.util.Locale;
 
 public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
-    //private GoogleMap mMap2;
+
 
     Location locationSet;
     LocationManager locationManager;
@@ -51,6 +51,8 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
     Marker m2;
     int rno;
 
+    //private Marker previousMarker = null;
+
     String[] rLat={"","","","","","","",""};
     String[] rLong={"","","","","","","",""};
     LatLng rLatLong;
@@ -62,6 +64,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
         mapFragment.getMapAsync(this);
 
         Intent intent=getIntent();
@@ -90,7 +93,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
                     Toast.makeText(getApplicationContext(), rLatLong.toString(), Toast.LENGTH_SHORT).show();
                     //mMap2.clear();
 
-                    mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(rLatLong).title("R Location"));
+                    m1=mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(rLatLong).title("R Location"));
                     if (latLong != null) {
                         m2 = mMap.addMarker(new MarkerOptions().position(latLong));
                     }
@@ -133,7 +136,30 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
+
+        //marker listener
+
+       /* previousMarker=m1;
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                String locAddress = marker.getTitle();
+                //fillTextViews(locAddress);
+                if (previousMarker != null) {
+                    previousMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                }
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                previousMarker = marker;
+
+                return true;
+            }
+        });
+        */
+
+        //...
+
     }
+
 
 
 
@@ -158,12 +184,12 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
         else{
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER , 5000 , 0 ,locationListener );
-            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            LatLng mylocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-            mMap.clear();
-            mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).position(mylocation).title("My Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 15 ));
+           // locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER , 5000 , 0 ,locationListener );
+           // Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            //LatLng mylocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+           // mMap.clear();
+            //mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).position(mylocation).title("My Location"));
+            //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 15 ));
             Toast.makeText(RikMapsActivity.this, "Updating Rikshaw Location........", Toast.LENGTH_LONG).show();
 
         }
@@ -186,7 +212,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
 
 
         mMap.clear();
-         mMap.addMarker(new MarkerOptions().position(latLong));
+        m1= mMap.addMarker(new MarkerOptions().position(latLong));
 
         LatLng tmpLatLong;
         int tmp=rno;

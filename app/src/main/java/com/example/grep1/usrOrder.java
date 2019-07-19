@@ -111,7 +111,7 @@ public class usrOrder extends AppCompatActivity {
         ref.child("delLocation").child("latitude").setValue("26.86885453");
         ref.child("delLocation").child("longitude").setValue("75.76313627");
         ref.child("cPhone").setValue(cPhone);
-        //ref.child("status").setValue("pending");
+        ref.child("state").setValue(0);
         startActivity(intentNavDraw);
     }
     public void onClickCurLoc(View view)

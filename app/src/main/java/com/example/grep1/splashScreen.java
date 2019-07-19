@@ -93,6 +93,7 @@ public class splashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(MainActivityIntent);
+                finish();
             }
         }, 1000);
 

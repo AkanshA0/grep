@@ -79,5 +79,10 @@ public class shopOrder extends AppCompatActivity {
         startActivity(intentMap);
     }
 
+    public void onClickSend(View view)
+    {
+
+    }
+
 }
 
