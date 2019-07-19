@@ -49,9 +49,10 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
     String curUid;
     Marker m1;
     Marker m2;
+    int rno;
 
-    String rLat;
-    String rLong;
+    String[] rLat={"","","","","","","",""};
+    String[] rLong={"","","","","","","",""};
     LatLng rLatLong;
     int counter;
     @Override
@@ -77,15 +78,15 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                int rno = (int)dataSnapshot.getChildrenCount();
+                 rno = (int)dataSnapshot.getChildrenCount();
 
                 Iterable<DataSnapshot> chlNames = dataSnapshot.getChildren();
                 counter = 0;
                 for (DataSnapshot contact : chlNames) {
-                    rLat = dataSnapshot.child(contact.getKey()).child("location").child("latitude").getValue().toString();
-                    rLong = dataSnapshot.child(contact.getKey()).child("location").child("longitude").getValue().toString();
+                    rLat[counter] = dataSnapshot.child(contact.getKey()).child("location").child("latitude").getValue().toString();
+                    rLong[counter] = dataSnapshot.child(contact.getKey()).child("location").child("longitude").getValue().toString();
 
-                    rLatLong = new LatLng(Double.valueOf(rLat), Double.valueOf(rLong));
+                    rLatLong = new LatLng(Double.valueOf(rLat[counter]), Double.valueOf(rLong[counter]));
                     Toast.makeText(getApplicationContext(), rLatLong.toString(), Toast.LENGTH_SHORT).show();
                     //mMap2.clear();
 
@@ -152,7 +153,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
         mMap = googleMap;
         //mMap2 = googleMap;
 
-        // Add a marker in Sydney and move the camera
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
@@ -163,7 +164,7 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
             mMap.clear();
             mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)).position(mylocation).title("My Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 15 ));
-            //Toast.makeText(RikMapsActivity.this, "Updating Location........", Toast.LENGTH_LONG).show();
+            Toast.makeText(RikMapsActivity.this, "Updating Rikshaw Location........", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -186,7 +187,15 @@ public class RikMapsActivity extends FragmentActivity implements OnMapReadyCallb
 
         mMap.clear();
          mMap.addMarker(new MarkerOptions().position(latLong));
-         mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(rLatLong).title("Rikshaw Location"));
+
+        LatLng tmpLatLong;
+        int tmp=rno;
+        while(tmp>=0) {
+            tmpLatLong= new LatLng(Double.valueOf(rLat[tmp]), Double.valueOf(rLong[tmp]));
+            mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(tmpLatLong).title("Rikshaw Location"));
+            tmp--;
+        }
+         //mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)).position(rLatLong).title("Rikshaw Location"));
 
     }
 }
