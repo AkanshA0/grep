@@ -4,5 +4,5 @@
     android:id="@+id/RecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="60dp"
+    android:layout_marginTop="30dp"
     tools:listitem="@layout/recycler_view_item"></android.support.v7.widget.RecyclerView>

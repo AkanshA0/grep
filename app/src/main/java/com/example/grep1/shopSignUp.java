@@ -61,7 +61,7 @@ public class shopSignUp extends AppCompatActivity {
 
         password = (EditText)findViewById(R.id.txtPass);
         signup = (Button) findViewById(R.id.btnSignUp);
-        intentLogin=new Intent(getApplicationContext(),rikLoginAct.class);
+        intentLogin=new Intent(getApplicationContext(),shopLogin.class);
     }
     @Override
     public void onStart() {
