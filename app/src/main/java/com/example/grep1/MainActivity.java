@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickDir(View view)
     {
-        startActivity(intent);
+        //startActivity(intent);
     }
 
 }
